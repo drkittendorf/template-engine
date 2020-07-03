@@ -1,6 +1,6 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Manager = require("./Develop/lib/Manager");
+const Engineer = require("./Develop/lib/Engineer");
+const Intern = require("./Develop/lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -8,52 +8,97 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+const render = require("./Develop/lib/htmlRenderer");
+const team = [];
 
 
 // Write code to use inquirer to gather information about the development team members,
+const addMembers = [
+  {
+    type: "list",
+    message: "Would you like to add an employee to the team?",
+    name: "addMore",
+    choices: ["Yes", "No"]
+  },
+];
+
+
 const questions = [
-    {
-        type: "input",
-        message: "What is the employee name?",
-        name: "name",
-    },
-    {
-        type: "input",
-        message: "What is the employee ID?",
-        name: "id",
-    },
-    {
-        type: "input",
-        message: "What is the employee's email address:",
-        name: "email",
-    },
-    {
-        type: "input",
-        message: "What is this employees role?",
-        name: "role",
-    },
+//   {
+//     type: "input",
+//     message: "What is the employee name?",
+//     name: "name",
+//   },
+//   {
+//     type: "input",
+//     message: "What is the employee ID?",
+//     name: "id",
+//   },
+//   {
+//     type: "input",
+//     message: "What is the employee's email address?:",
+//     name: "email",
+//   },
+  {
+    type: "list",
+    message: "What type of employee would you like to add?",
+    name: "role",
+    choices: ["Engineer", "Intern"],
+  },
 ];
 
 // and to create objects for each team member (using the correct classes as blueprints!)
-function init() {
-    inquirer
-        .prompt(questions)
-        .then(function (data) {
-            //   console.log("Here's the MD so far ... \n", data);
+async function init() {
+    // console.log("im working this far");
+    const moreTeam = await inquirer.prompt(addMembers)
+    if (moreTeam.addMore === "No") {
+    return console.log ("We're done here");}
+    
+    const answers = await inquirer.prompt(questions);
+    console.log(answers);
+    
+    if (answers.role === "Engineer") { 
+        engineerQuestions ();
+        return "Engineer";
+      } else {
+        internQuestions();
+        return "Intern";
+      };
+    };
 
-            // const licensedJSON = licenseBadge(data);
+async function promptManager() {
+  const teamManager = await inquirer.prompt([
+    {
+      type: "input",
+      message: "What is the Managers name?",
+      name: "name",
+    },
+    {
+      type: "input",
+      message: "What is the employee ID?",
+      name: "id",
+    },
+    {
+      type: "input",
+      message: "What is the Managers's email address?:",
+      name: "email",
+    },
+    {
+      type: "input",
+      name: "officeNumber",
+      message: "What is your office number?",
+    },
+  ]);
+  console.log(teamManager);
+  const manager = new Manager (teamManager.name, teamManager.id, teamManager.email, teamManager.officeNumber);
+    team.push(manager);
+  init();
+};
 
-            //   console.log(" MD after ... \n", licensedJSON);
-            writeToFile(".output/READM3.md", render(data));
-        })
-
-        .catch((error) => {
-            console.error("ERROR CAUGHT");
-        });
-}
+promptManager();
 
 // After the user has input all employees desired, call the `render` function (required
+// writeFileSync("Develop/output/team.html", render(team));
 
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -72,4 +117,8 @@ function init() {
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+// for the provided `render` function to work.
+
+//     .then
+
+//
