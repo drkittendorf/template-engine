@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./Develop/lib/htmlRenderer");
 const team = [];
+//
 
 // Write code to use inquirer to gather information about the development team members,
 const addMembers = [
@@ -53,13 +54,13 @@ async function internQuestions() {
     },
   ]);
   console.log(teamIntern);
-  const engineer = new Intern(
-    teamEngineer.name,
-    teamEngineer.id,
-    teamEngineer.email,
-    teamEngineer.school
+  const intern = new Intern(
+    teamIntern.name,
+    teamIntern.id,
+    teamIntern.email,
+    teamIntern.school
   );
-  team.push(engineer);
+  team.push(intern);
   init();
 }
 
@@ -102,7 +103,8 @@ async function init() {
   // console.log("im working this far");
   const moreTeam = await inquirer.prompt(addMembers);
   if (moreTeam.addMore === "No") {
-    console.log("We're done here");
+    console.log("Alrighty... Your team members are");
+    fs.writeFileSync("Develop/output/team.html", render(team));
     console.log(team);
     return team;
   }
@@ -156,7 +158,6 @@ async function promptManager() {
 promptManager();
 
 // After the user has input all employees desired, call the `render` function (required
-// writeFileSync("Develop/output/team.html", render(team));
 
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -176,7 +177,3 @@ promptManager();
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work.
-
-//     .then
-
-//
