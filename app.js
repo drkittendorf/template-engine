@@ -104,7 +104,7 @@ async function init() {
   const moreTeam = await inquirer.prompt(addMembers);
   if (moreTeam.addMore === "No") {
     console.log("Alrighty... Your team members are");
-    fs.writeFileSync("Develop/output/team.html", render(team));
+    fs.writeFileSync("Develop/output/team.html", render(team)); // required function
     console.log(team);
     return team;
   }
