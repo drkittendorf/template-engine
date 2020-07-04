@@ -3,8 +3,7 @@
 Homework#10
 
 [User Story](#user)<br>
-[VIDEO](#VIDEO)<br>
-![image](".Assets\screenshot-successful-npm-run-test.png")
+
 
 ## USER STORY
 
@@ -16,5 +15,5 @@ After the questions are answered a team.html file is generated in the output dir
 
 ## VIDEO
 
-[![watch the video] exampleVideo.webm
-[!(https://drive.google.com/file/d/1BV8RDUV82xRUOe20a5L1RCxRPxDMr9Ty/preview)
+[![watch the video] 
+[!
