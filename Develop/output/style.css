@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo+Narrow:wght@400;500&family=Archivo:wght@500&display=swap");
+:root {
+  --primary-color: hsl(192, 52%, 51%);
+  --button-color: rgb(8, 56, 3);
+  font-size: 1rem;
+  font-family: "Archivo", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  color: var(--button-color);
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+p {
+  color: var(--primary-color);
+}
+.title {
+  font-size: 4rem;
+}
+
+.team-heading {
+  font-size: 3rem;
+}
+
+.card-body {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 30px;
+}
+
+.card-body:hover {
+  font-weight: bold;
+  transform: scale (2);
+  border: 0.25rem solid white;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  color: var(--button-color);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Archivo narrow", sans-serif;
+  line-height: 1.5;
+  background-color: black;
+}
+
+header {
+  /* width: 100vw; */
+  display: flex;
+  text-align: center;
+  /* padding: 2rem; */
+  flex-direction: row;
+}

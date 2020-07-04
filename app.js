@@ -108,6 +108,7 @@ async function init() {
     // console.log(team);
     return team;
   }
+  
 
   const answers = await inquirer.prompt(questions);
   // console.log(answers);
