@@ -11,34 +11,17 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./Develop/lib/htmlRenderer");
 const team = [];
 
-
 // Write code to use inquirer to gather information about the development team members,
 const addMembers = [
   {
     type: "list",
     message: "Would you like to add an employee to the team?",
     name: "addMore",
-    choices: ["Yes", "No"]
+    choices: ["Yes", "No"],
   },
 ];
 
-
 const questions = [
-//   {
-//     type: "input",
-//     message: "What is the employee name?",
-//     name: "name",
-//   },
-//   {
-//     type: "input",
-//     message: "What is the employee ID?",
-//     name: "id",
-//   },
-//   {
-//     type: "input",
-//     message: "What is the employee's email address?:",
-//     name: "email",
-//   },
   {
     type: "list",
     message: "What type of employee would you like to add?",
@@ -46,25 +29,95 @@ const questions = [
     choices: ["Engineer", "Intern"],
   },
 ];
+async function internQuestions() {
+  const teamIntern = await inquirer.prompt([
+    {
+      type: "input",
+      message: "What is this Intern's name?",
+      name: "name",
+    },
+    {
+      type: "input",
+      message: "What is their employee ID?",
+      name: "id",
+    },
+    {
+      type: "input",
+      message: "What is this Intern's email address?:",
+      name: "email",
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "What is their school?",
+    },
+  ]);
+  console.log(teamIntern);
+  const engineer = new Intern(
+    teamEngineer.name,
+    teamEngineer.id,
+    teamEngineer.email,
+    teamEngineer.school
+  );
+  team.push(engineer);
+  init();
+}
+
+async function engineerQuestions() {
+  const teamEngineer = await inquirer.prompt([
+    {
+      type: "input",
+      message: "What is this Engineer's name?",
+      name: "name",
+    },
+    {
+      type: "input",
+      message: "What is their employee ID?",
+      name: "id",
+    },
+    {
+      type: "input",
+      message: "What is this Engineers's email address?:",
+      name: "email",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is their GitHub address?",
+    },
+  ]);
+  console.log(teamEngineer);
+  const engineer = new Engineer(
+    teamEngineer.name,
+    teamEngineer.id,
+    teamEngineer.email,
+    teamEngineer.github
+  );
+  team.push(engineer);
+  init();
+}
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 async function init() {
-    // console.log("im working this far");
-    const moreTeam = await inquirer.prompt(addMembers)
-    if (moreTeam.addMore === "No") {
-    return console.log ("We're done here");}
-    
-    const answers = await inquirer.prompt(questions);
-    console.log(answers);
-    
-    if (answers.role === "Engineer") { 
-        engineerQuestions ();
-        return "Engineer";
-      } else {
-        internQuestions();
-        return "Intern";
-      };
-    };
+  // console.log("im working this far");
+  const moreTeam = await inquirer.prompt(addMembers);
+  if (moreTeam.addMore === "No") {
+    console.log("We're done here");
+    console.log(team);
+    return team;
+  }
+
+  const answers = await inquirer.prompt(questions);
+  console.log(answers);
+
+  if (answers.role === "Engineer") {
+    engineerQuestions();
+    return "Engineer";
+  } else {
+    internQuestions();
+    return "Intern";
+  }
+}
 
 async function promptManager() {
   const teamManager = await inquirer.prompt([
@@ -90,10 +143,15 @@ async function promptManager() {
     },
   ]);
   console.log(teamManager);
-  const manager = new Manager (teamManager.name, teamManager.id, teamManager.email, teamManager.officeNumber);
-    team.push(manager);
+  const manager = new Manager(
+    teamManager.name,
+    teamManager.id,
+    teamManager.email,
+    teamManager.officeNumber
+  );
+  team.push(manager);
   init();
-};
+}
 
 promptManager();
 
