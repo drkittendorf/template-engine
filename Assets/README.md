@@ -3,6 +3,7 @@
 Homework#10
 
 [User Story](#user)<br>
+![image](Assets\images\screenshot-successful-npm-run-test.png)
 
 
 ## USER STORY
@@ -15,5 +16,4 @@ After the questions are answered a team.html file is generated in the output dir
 
 ## VIDEO
 
-[![watch the video] 
-[!
+[![watch the video] (https://drive.google.com/file/d/1yGp4G6V1SqPSvravv_NMaYQX8EJTVkJP/preview)

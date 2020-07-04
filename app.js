@@ -103,14 +103,14 @@ async function init() {
   // console.log("im working this far");
   const moreTeam = await inquirer.prompt(addMembers);
   if (moreTeam.addMore === "No") {
-    console.log("Alrighty... Your team members are");
+    // console.log("Alrighty... Your team members are");
     fs.writeFileSync("Develop/output/team.html", render(team)); // required function
-    console.log(team);
+    // console.log(team);
     return team;
   }
 
   const answers = await inquirer.prompt(questions);
-  console.log(answers);
+  // console.log(answers);
 
   if (answers.role === "Engineer") {
     engineerQuestions();
@@ -144,7 +144,7 @@ async function promptManager() {
       message: "What is your office number?",
     },
   ]);
-  console.log(teamManager);
+  // console.log(teamManager);
   const manager = new Manager(
     teamManager.name,
     teamManager.id,
